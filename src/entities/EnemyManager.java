@@ -58,7 +58,7 @@ public class EnemyManager {
 			if(c.isActive())
 				if (c.getCurrentHealth() > 0)
 					if (attackBox.intersects(c.getHitbox())) {
-						c.hurt(10);
+						c.hurt(3);
 						return;
 					}
 	}
