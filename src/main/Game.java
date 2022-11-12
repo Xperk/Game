@@ -107,6 +107,7 @@ public class Game implements Runnable {
 		double deltaU = 0;
 		double deltaF = 0;
 
+		// Game loop
 		while (true) {
 			long currentTime = System.nanoTime();
 
@@ -131,7 +132,6 @@ public class Game implements Runnable {
 				System.out.println("FPS: " + frames + " | UPS: " + updates);
 				frames = 0;
 				updates = 0;
-
 			}
 		}
 
