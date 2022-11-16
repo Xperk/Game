@@ -27,14 +27,14 @@ public class MenuButton {
 
 	private void initBounds() {
 		bounds = new Rectangle(xPos - xOffsetCenter, yPos, B_WIDTH, B_HEIGHT);
-
 	}
 
 	private void loadImgs() {
 		imgs = new BufferedImage[3];
 		BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.MENU_BUTTONS);
 		for (int i = 0; i < imgs.length; i++)
-			imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT, B_WIDTH_DEFAULT, B_HEIGHT_DEFAULT);
+			imgs[i] = temp.getSubimage(i * B_WIDTH_DEFAULT, rowIndex * B_HEIGHT_DEFAULT, B_WIDTH_DEFAULT,
+					B_HEIGHT_DEFAULT);
 	}
 
 	public void draw(Graphics g) {
@@ -68,7 +68,7 @@ public class MenuButton {
 	public Rectangle getBounds() {
 		return bounds;
 	}
- 
+
 	public void applyGamestate() {
 		Gamestate.state = state;
 	}
@@ -77,6 +77,7 @@ public class MenuButton {
 		mouseOver = false;
 		mousePressed = false;
 	}
+
 	public Gamestate getState() {
 		return state;
 	}

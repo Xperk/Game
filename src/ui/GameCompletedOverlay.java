@@ -13,7 +13,7 @@ import utilz.LoadSave;
 public class GameCompletedOverlay {
 	private Playing playing;
 	private BufferedImage img;
-	private MenuButton quit, credit;
+	private MenuButton quit, tutorial;
 	private int imgX, imgY, imgW, imgH;
 
 	public GameCompletedOverlay(Playing playing) {
@@ -24,9 +24,11 @@ public class GameCompletedOverlay {
 
 	private void createButtons() {
 		quit = new MenuButton(Game.GAME_WIDTH / 2, (int) (270 * Game.SCALE), 2, Gamestate.MENU);
+		tutorial = new MenuButton(Game.GAME_WIDTH / 2, (int) (200 * Game.SCALE), 3, Gamestate.TUTORIAL);
 	}
 
 	private void createImg() {
+		img = LoadSave.GetSpriteAtlas(LoadSave.GAME_COMPLETED);
 		imgW = (int) (img.getWidth() * Game.SCALE);
 		imgH = (int) (img.getHeight() * Game.SCALE);
 		imgX = Game.GAME_WIDTH / 2 - imgW / 2;
@@ -40,12 +42,12 @@ public class GameCompletedOverlay {
 
 		g.drawImage(img, imgX, imgY, imgW, imgH, null);
 
-		credit.draw(g);
+		tutorial.draw(g);
 		quit.draw(g);
 	}
 
 	public void update() {
-		credit.update();
+		tutorial.update();
 		quit.update();
 	}
 
@@ -54,35 +56,38 @@ public class GameCompletedOverlay {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		credit.setMouseOver(false);
+		tutorial.setMouseOver(false);
 		quit.setMouseOver(false);
 
 		if (isIn(quit, e))
 			quit.setMouseOver(true);
-		else if (isIn(credit, e))
-			credit.setMouseOver(true);
+		else if (isIn(tutorial, e))
+		tutorial.setMouseOver(true);
 	}
 
 	public void mouseReleased(MouseEvent e) {
 		if (isIn(quit, e)) {
 			if (quit.isMousePressed()) {
 				playing.resetAll();
+				playing.resetGameCompleted();
 				playing.setGamestate(Gamestate.MENU);
 
 			}
-		} else if (isIn(credit, e))
-			if (credit.isMousePressed()) {
+		} else if (isIn(tutorial, e))
+			if (tutorial.isMousePressed()) {
 				playing.resetAll();
+				playing.resetGameCompleted();
+				playing.setGamestate(Gamestate.TUTORIAL);
 			}
 
 		quit.resetBools();
-		credit.resetBools();
+		tutorial.resetBools();
 	}
 
 	public void mousePressed(MouseEvent e) {
 		if (isIn(quit, e))
 			quit.setMousePressed(true);
-		else if (isIn(credit, e))
-			credit.setMousePressed(true);
+		else if (isIn(tutorial, e))
+		tutorial.setMousePressed(true);
 	}
 }
