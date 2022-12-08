@@ -60,8 +60,6 @@ public abstract class Enemy extends Entity {
 		if (state != HIT && state != DEAD) {
 			updateInAir(lvlData);
 			playing.getObjectManager().checkSpikesTouched(this);
-			if (IsEntityInWater(hitbox, lvlData))
-				hurt(maxHealth);
 		}
 	}
 
@@ -118,12 +116,12 @@ public abstract class Enemy extends Entity {
 	protected boolean isPlayerCloseForAttack(Player player) {
 		int absValue = (int) Math.abs(player.hitbox.x - hitbox.x);
 		switch (enemyType) {
-		case CRABBY -> {
-			return absValue <= attackDistance;
-		}
-		case SHARK -> {
-			return absValue <= attackDistance * 2;
-		}
+			case CRABBY -> {
+				return absValue <= attackDistance;
+			}
+			case SHARK -> {
+				return absValue <= attackDistance * 2;
+			}
 		}
 		return false;
 	}

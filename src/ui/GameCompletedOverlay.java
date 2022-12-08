@@ -13,7 +13,7 @@ import utilz.LoadSave;
 public class GameCompletedOverlay {
 	private Playing playing;
 	private BufferedImage img;
-	private MenuButton quit, tutorial;
+	private MenuButton quit;
 	private int imgX, imgY, imgW, imgH;
 
 	public GameCompletedOverlay(Playing playing) {
@@ -23,8 +23,7 @@ public class GameCompletedOverlay {
 	}
 
 	private void createButtons() {
-		quit = new MenuButton(Game.GAME_WIDTH / 2, (int) (270 * Game.SCALE), 2, Gamestate.MENU);
-		tutorial = new MenuButton(Game.GAME_WIDTH / 2, (int) (200 * Game.SCALE), 3, Gamestate.TUTORIAL);
+		quit = new MenuButton(Game.GAME_WIDTH / 2, (Game.GAME_HEIGHT / 2), 2, Gamestate.MENU);
 	}
 
 	private void createImg() {
@@ -42,12 +41,10 @@ public class GameCompletedOverlay {
 
 		g.drawImage(img, imgX, imgY, imgW, imgH, null);
 
-		tutorial.draw(g);
 		quit.draw(g);
 	}
 
 	public void update() {
-		tutorial.update();
 		quit.update();
 	}
 
@@ -56,13 +53,10 @@ public class GameCompletedOverlay {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		tutorial.setMouseOver(false);
 		quit.setMouseOver(false);
 
 		if (isIn(quit, e))
 			quit.setMouseOver(true);
-		else if (isIn(tutorial, e))
-		tutorial.setMouseOver(true);
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -73,21 +67,13 @@ public class GameCompletedOverlay {
 				playing.setGamestate(Gamestate.MENU);
 
 			}
-		} else if (isIn(tutorial, e))
-			if (tutorial.isMousePressed()) {
-				playing.resetAll();
-				playing.resetGameCompleted();
-				playing.setGamestate(Gamestate.TUTORIAL);
-			}
+		}
 
 		quit.resetBools();
-		tutorial.resetBools();
 	}
 
 	public void mousePressed(MouseEvent e) {
 		if (isIn(quit, e))
 			quit.setMousePressed(true);
-		else if (isIn(tutorial, e))
-		tutorial.setMousePressed(true);
 	}
 }

@@ -1,12 +1,7 @@
 package entities;
 
-import static utilz.Constants.Directions.DOWN;
-import static utilz.Constants.Directions.LEFT;
 import static utilz.Constants.Directions.UP;
-import static utilz.HelpMethods.CanMoveHere;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 import main.Game;
@@ -36,41 +31,6 @@ public abstract class Entity {
 		this.height = height;
 	}
 
-//	protected void updatePushBackDrawOffset() {
-//		float speed = 0.95f;
-//		float limit = -30f;
-//
-//		if (pushBackOffsetDir == UP) {
-//			pushDrawOffset -= speed;
-//			if (pushDrawOffset <= limit)
-//				pushBackOffsetDir = DOWN;
-//		} else {
-//			pushDrawOffset += speed;
-//			if (pushDrawOffset >= 0)
-//				pushDrawOffset = 0;
-//		}
-//	}
-
-//	protected void pushBack(int pushBackDir, int[][] lvlData, float speedMulti) {
-//		float xSpeed = 0;
-//		if (pushBackDir == LEFT)
-//			xSpeed = -walkSpeed;
-//		else
-//			xSpeed = walkSpeed;
-//
-//		if (CanMoveHere(hitbox.x + xSpeed * speedMulti, hitbox.y, hitbox.width, hitbox.height, lvlData))
-//			hitbox.x += xSpeed * speedMulti;
-//	}
-
-	protected void drawAttackBox(Graphics g, int xLvlOffset) {
-		g.setColor(Color.red);
-		g.drawRect((int) (attackBox.x - xLvlOffset), (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
-	}
-
-	protected void drawHitbox(Graphics g, int xLvlOffset) {
-		g.setColor(Color.PINK);
-		g.drawRect((int) hitbox.x - xLvlOffset, (int) hitbox.y, (int) hitbox.width, (int) hitbox.height);
-	}
 
 	protected void initHitbox(int width, int height) {
 		hitbox = new Rectangle2D.Float(x, y, (int) (width * Game.SCALE), (int) (height * Game.SCALE));

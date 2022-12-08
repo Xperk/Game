@@ -126,17 +126,11 @@ public class Player extends Entity {
 
 		updateAttackBox();
 
-		// if (state == HIT) {
-		// if (aniIndex <= GetSpriteAmount(state))
-		// pushBack(pushBackDir, lvlData, 1.25f);
-		// updatePushBackDrawOffset();
-		// } else
 		updatePos();
 
 		if (moving) {
 			checkPotionTouched();
 			checkSpikesTouched();
-			checkInsideWater();
 			tileY = (int) (hitbox.y / Game.TILES_SIZE);
 			if (powerAttackActive) {
 				powerAttackTick++;
@@ -154,10 +148,6 @@ public class Player extends Entity {
 		setAnimation();
 	}
 
-	private void checkInsideWater() {
-		if (IsEntityInWater(hitbox, playing.getLevelManager().getCurrentLevel().getLevelData()))
-			currentHealth = 0;
-	}
 
 	private void checkSpikesTouched() {
 		playing.checkSpikesTouched(this);
@@ -221,8 +211,6 @@ public class Player extends Entity {
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX,
 				(int) (hitbox.y - yDrawOffset + (int) (pushDrawOffset)), width * flipW, height, null);
-		// drawHitbox(g, lvlOffset);
-		// drawAttackBox(g, lvlOffset);
 		drawUI(g);
 	}
 
@@ -442,17 +430,11 @@ public class Player extends Entity {
 		this.attacking = attacking;
 	}
 
-	public boolean isLeft() {
-		return left;
-	}
 
 	public void setLeft(boolean left) {
 		this.left = left;
 	}
 
-	public boolean isRight() {
-		return right;
-	}
 
 	public void setRight(boolean right) {
 		this.right = right;

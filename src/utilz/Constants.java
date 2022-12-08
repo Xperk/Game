@@ -7,23 +7,6 @@ public class Constants {
 	public static final float GRAVITY = 0.04f * Game.SCALE;
 	public static final int ANI_SPEED = 25;
 
-	public static class Dialogue {
-		public static final int QUESTION = 0;
-		public static final int EXCLAMATION = 1;
-
-		public static final int DIALOGUE_WIDTH = (int) (14 * Game.SCALE);
-		public static final int DIALOGUE_HEIGHT = (int) (12 * Game.SCALE);
-
-		public static int GetSpriteAmount(int type) {
-			switch (type) {
-			case QUESTION, EXCLAMATION:
-				return 5;
-			}
-
-			return 0;
-		}
-	}
-
 	public static class Projectiles {
 		public static final int CANNON_BALL_DEFAULT_WIDTH = 15;
 		public static final int CANNON_BALL_DEFAULT_HEIGHT = 15;
@@ -259,7 +242,6 @@ public class Constants {
 		public static final int LEFT = 0;
 		public static final int UP = 1;
 		public static final int RIGHT = 2;
-		public static final int DOWN = 3;
 	}
 
 	public static class PlayerConstants {

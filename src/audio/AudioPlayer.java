@@ -22,10 +22,6 @@ public class AudioPlayer {
 	public static int JUMP = 1;
 	public static int GAMEOVER = 2;
 	public static int LVL_COMPLETED = 3;
-	public static int ATTACK_ONE = 4;
-	public static int ATTACK_TWO = 5;
-	public static int ATTACK_THREE = 6;
-
 	private Clip[] songs, effects;
 	private int currentSongId;
 	private float volume = 0.5f;
@@ -137,7 +133,6 @@ public class AudioPlayer {
 	}
 
 	private void updateSongVolume() {
-
 		FloatControl gainControl = (FloatControl) songs[currentSongId].getControl(FloatControl.Type.MASTER_GAIN);
 		float range = gainControl.getMaximum() - gainControl.getMinimum();
 		float gain = (range * volume) + gainControl.getMinimum();

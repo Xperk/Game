@@ -2,8 +2,6 @@ package entities;
 
 import static utilz.Constants.EnemyConstants.*;
 import static utilz.HelpMethods.IsFloor;
-import static utilz.Constants.Dialogue.*;
-
 import gamestates.Playing;
 
 public class Crabby extends Enemy {
@@ -42,9 +40,6 @@ public class Crabby extends Enemy {
 				}
 				move(lvlData);
 
-				if (inAir)
-					playing.addDialogue((int) hitbox.x, (int) hitbox.y, EXCLAMATION);
-
 				break;
 			case ATTACK:
 				if (aniIndex == 0)
@@ -52,11 +47,6 @@ public class Crabby extends Enemy {
 				if (aniIndex == 3 && !attackChecked)
 					checkPlayerHit(attackBox, playing.getPlayer());
 				break;
-//			case HIT:
-//				if (aniIndex <= GetSpriteAmount(enemyType, state) - 2)
-////					pushBack(pushBackDir, lvlData, 2f);
-////				updatePushBackDrawOffset();
-//				break;
 			}
 		}
 	}
